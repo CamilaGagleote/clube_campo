@@ -26,4 +26,19 @@ public class Cobranca {
     private int agenciaContaCobranca;
     private String cpnj;
 
+    public Cobranca(DadosCadastroCobranca dados) {
+        this.valorCobranca = dados.valorCobranca();
+        this.jurosCobranca = dados.jurosCobranca();
+        this.numContacobranca = dados.numContacobranca();
+        this.agenciaContaCobranca = dados.agenciaContaCobranca();
+        this.cpnj = dados.cpnj();
+    }
+
+    public void atualizarCobranca(DadosAtualizacaoCobranca dados) {
+        if (dados.valorCobranca() != null) this.valorCobranca = dados.valorCobranca();
+        if (dados.jurosCobranca() != null) this.jurosCobranca = dados.jurosCobranca();
+        if (dados.numContacobranca() != null) this.numContacobranca = dados.numContacobranca();
+        if (dados.agenciaContaCobranca() != null) this.agenciaContaCobranca = dados.agenciaContaCobranca();
+        if (dados.cpnj() != null) this.cpnj = dados.cpnj();
+    }
 }

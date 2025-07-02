@@ -16,10 +16,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "idCobranca")
+@EqualsAndHashCode(of = "idDependente")
 public class Dependente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDependente;
     String rgDependente;
     String nomeDependente;
+
+    public Dependente(DadosCadastroDependente dados) {
+        this.rgDependente = dados.rgDependente();
+        this.nomeDependente = dados.nomeDependente();
+    }
+
+    public void atualizarDependente(DadosAtualizacaoDependente dados) {
+        if (dados.nomeDependente() != null) this.nomeDependente = dados.nomeDependente();
+        if (dados.rgDependente() != null) this.rgDependente = dados.rgDependente();
+    }
 }
