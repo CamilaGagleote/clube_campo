@@ -1,10 +1,15 @@
 package clube_campo.model.areaclube;
 
+import java.util.List;
+
+import clube_campo.model.pagamento.Pagamento;
+import clube_campo.model.reserva.Reserva;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -32,6 +37,9 @@ public class AreaClube {
     private String classificacaoArea;
     private Boolean indicadorReservavelArea;
 
+    @OneToMany(mappedBy = "areaClubeReserva")
+    private List<Reserva> reservasAreaClube;
+    
     public AreaClube(DadosCadastroArea dados) {
         this.nomeArea = dados.nomeArea();
         this.qtdeItensArea = dados.qtdeItensArea();

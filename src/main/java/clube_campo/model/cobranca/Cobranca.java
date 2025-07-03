@@ -1,9 +1,14 @@
 package clube_campo.model.cobranca;
 
+import java.util.List;
+
+import clube_campo.model.pagamento.Pagamento;
+import clube_campo.model.reserva.Reserva;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,6 +30,12 @@ public class Cobranca {
     private int numContacobranca;
     private int agenciaContaCobranca;
     private String cpnj;
+
+    @OneToMany(mappedBy = "cobrancaPagamento")
+    private List<Pagamento> pagamentosCobranca;
+
+    @OneToMany(mappedBy = "cobrancaReserva")
+    private List<Reserva> reservasCobranca;
 
     public Cobranca(DadosCadastroCobranca dados) {
         this.valorCobranca = dados.valorCobranca();

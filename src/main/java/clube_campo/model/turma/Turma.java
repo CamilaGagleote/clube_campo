@@ -1,9 +1,14 @@
 package clube_campo.model.turma;
 
+import clube_campo.model.associado.Associado;
+import clube_campo.model.cobranca.Cobranca;
+import clube_campo.model.passeioclube.PasseioClube;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,6 +27,14 @@ public class Turma{
     private int qtdeTurma;
     private int qtdePessoa;
     private int duracao;
+
+    @ManyToOne
+    @JoinColumn(name = "passeio_id")
+    private PasseioClube passeioClubeTurma;
+
+    @ManyToOne
+    @JoinColumn(name = "associado_id")
+    private Associado associadoTurma;
 
     public Turma(DadosCadastroTurma dados) {
         this.qtdeTurma = dados.qtdeTurma();

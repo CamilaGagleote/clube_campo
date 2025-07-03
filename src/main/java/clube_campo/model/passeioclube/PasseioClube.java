@@ -1,9 +1,14 @@
 package clube_campo.model.passeioclube;
 
+import java.util.List;
+
+import clube_campo.model.pagamento.Pagamento;
+import clube_campo.model.turma.Turma;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,18 +26,18 @@ public class PasseioClube{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPasseio;
     private String nomePasseio;
-    private int qtdeTurma; 
     private int duracao;
+
+    @OneToMany(mappedBy = "passeioClubeTurma")
+    private List<Turma> turmasPasseio;
 
     public PasseioClube(DadosCadastroPasseioClube dados) {
         this.nomePasseio = dados.nomePasseio();
-        this.qtdeTurma = dados.qtdeTurma();
         this.duracao = dados.duracao();
     }
 
     public void atualizarPasseio(DadosAtualizacaoPasseioClube dados) {
         if (dados.nomePasseio() != null) this.nomePasseio = dados.nomePasseio();
-        if (dados.qtdeTurma() != null) this.qtdeTurma = dados.qtdeTurma();
         if (dados.duracao() != null) this.duracao = dados.duracao();
     }
 }

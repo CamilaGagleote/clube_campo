@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import clube_campo.model.dependente.Dependente;
+import clube_campo.model.reserva.Reserva;
+import clube_campo.model.turma.Turma;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,6 +44,12 @@ public class Associado{
     private LocalDate dataCadastroAssociado;
     @OneToMany(mappedBy = "associado")
     private List<Dependente> dependentes;
+
+    @OneToMany(mappedBy = "associadoTurma")
+    private List<Turma> turmasAssociado;
+
+    @OneToMany(mappedBy = "associadoReserva")
+    private List<Reserva> reservasReserva;
 
     public void atualizarAssociado(DadosAtualizacaoAssociado dados) {
         if (dados.nomeAssociado() != null) this.nomeAssociado = dados.nomeAssociado();

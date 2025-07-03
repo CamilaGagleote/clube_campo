@@ -1,10 +1,13 @@
 package clube_campo.model.pagamento;
 import java.time.LocalDate;
 
+import clube_campo.model.cobranca.Cobranca;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,11 +27,16 @@ public class Pagamento{
     private double valorPagamento;
     private String formaPagamento;
     private LocalDate dataPagamento;
+    
+    @ManyToOne
+    @JoinColumn(name = "cobranca_id")
+    private Cobranca cobrancaPagamento;
 
-    public Pagamento(DadosCadastroPagamento dados) {
+    public Pagamento(DadosCadastroPagamento dados, Cobranca cobranca) {
         this.valorPagamento = dados.valorPagamento();
         this.formaPagamento = dados.formaPagamento();
         this.dataPagamento = dados.dataPagamento();
+        this.cobrancaPagamento = cobranca;
     }
 
     public void atualizarPagamento(DadosAtualizacaoPagamento dados) {
