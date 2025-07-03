@@ -2,6 +2,8 @@ package clube_campo.model.areaclube;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import clube_campo.model.pagamento.Pagamento;
 import clube_campo.model.reserva.Reserva;
 import jakarta.persistence.Column;
@@ -38,6 +40,7 @@ public class AreaClube {
     private Boolean indicadorReservavelArea;
 
     @OneToMany(mappedBy = "areaClubeReserva")
+    @JsonIgnore
     private List<Reserva> reservasAreaClube;
     
     public AreaClube(DadosCadastroArea dados) {

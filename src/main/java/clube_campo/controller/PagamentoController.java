@@ -27,10 +27,16 @@ public class PagamentoController {
 
     @PostMapping
     @Transactional
-    public Pagamento cadastrarPagamento(@RequestBody @Valid DadosCadastroPagamento dados) {
-        Cobranca cobranca = serviceCobranca.getCobrancaById(dados.idCobranca());
-        Pagamento Pagamento = new Pagamento(dados, cobranca);
-        return service.cadastrar(Pagamento);
+    public Pagamento cadastrarPagamento(
+        @RequestBody @Valid DadosCadastroPagamento dados,
+        @RequestParam Long idCobranca
+    ) {
+        Pagamento pagamento = new Pagamento(dados);
+        
+        Cobranca cobranca = serviceCobranca.getCobrancaById(idCobranca);
+        pagamento.setCobrancaPagamento(cobranca);
+
+        return service.cadastrar(pagamento);
     }
 
     @GetMapping

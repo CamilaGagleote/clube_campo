@@ -5,5 +5,5 @@ public record DadosCadastroCobranca(
     Double jurosCobranca,
     Integer numContacobranca,
     Integer agenciaContaCobranca,
-    String cpnj
+    String cnpj
 ) {}

@@ -5,45 +5,45 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import java.util.List;
-import clube_campo.model.areaclube.AreaClube;
-import clube_campo.model.areaclube.AreaClubeService;
-import clube_campo.model.areaclube.DadosCadastroArea;
-import clube_campo.model.areaclube.DadosAtualizacaoArea;
+import clube_campo.model.passeioclube.*;
 
 @RestController
 @RequestMapping("/passeioclube")
 public class PasseioClubeController {
 
     @Autowired
-    private AreaClubeService service;
-
+    private PasseioClubeService service;
 
     @PostMapping
     @Transactional
-    public AreaClube cadastrarArea(@RequestBody @Valid DadosCadastroArea dados) {
-        AreaClube area = new AreaClube(dados);
-        return service.cadastrar(area);
+    public PasseioClube cadastrarPasseio(@RequestBody @Valid DadosCadastroPasseioClube dados) {
+        PasseioClube passeio = new PasseioClube(dados);
+        return service.cadastrar(passeio);
     }
 
     @GetMapping
-    public List<AreaClube> listarAreas() {
-        return service.getAllAreas();
+    public List<PasseioClube> listarPasseios() {
+        return service.getAllPasseios();
     }
 
     @GetMapping("/{id}")
-    public AreaClube buscarPorId(@PathVariable Long id) {
-        return service.getAreaById(id);
+    public PasseioClube buscarPorId(@PathVariable Long id) {
+        return service.getPasseioById(id);
     }
 
     @PutMapping
     @Transactional
-    public AreaClube atualizarArea(@RequestBody @Valid DadosAtualizacaoArea dados) {
-        return service.atualizarArea(dados);
+    public PasseioClube atualizarPasseio(@RequestBody @Valid DadosAtualizacaoPasseioClube dados) {
+        return service.atualizarPasseio(dados);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
+    public void deletarPasseio(@PathVariable Long id) {
+        service.deletarPasseio(id);
+    }
+
     public void deletarArea(@PathVariable Long id) {
-        service.deletarArea(id);
+        service.deletarPasseio(id);
     }
 }

@@ -32,11 +32,10 @@ public class Pagamento{
     @JoinColumn(name = "cobranca_id")
     private Cobranca cobrancaPagamento;
 
-    public Pagamento(DadosCadastroPagamento dados, Cobranca cobranca) {
+    public Pagamento(DadosCadastroPagamento dados) {
         this.valorPagamento = dados.valorPagamento();
         this.formaPagamento = dados.formaPagamento();
-        this.dataPagamento = dados.dataPagamento();
-        this.cobrancaPagamento = cobranca;
+        this.dataPagamento = LocalDate.now();
     }
 
     public void atualizarPagamento(DadosAtualizacaoPagamento dados) {

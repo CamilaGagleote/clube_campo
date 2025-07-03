@@ -1,5 +1,6 @@
 package clube_campo.model.dependente;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import clube_campo.model.associado.Associado;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class Dependente {
     String nomeDependente;
 
     @ManyToOne
+    @JsonBackReference
     private Associado associado;
 
     public Dependente(DadosCadastroDependente dados) {
