@@ -6,7 +6,9 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.List;
 
+import clube_campo.model.dependente.DadosCadastroDependente;
 import clube_campo.model.dependente.Dependente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,6 +43,7 @@ public class Associado{
     private String celularAssociado;
     private LocalDate dataCadastroAssociado;
     @OneToMany(mappedBy = "associado")
+    @JsonManagedReference
     private List<Dependente> dependentes;
 
     public void atualizarAssociado(DadosAtualizacaoAssociado dados) {
@@ -68,6 +71,5 @@ public class Associado{
         this.telefoneResidencialAssociado = dados.telefoneResidencialAssociado();
         this.telefoneComercialAssociado = dados.telefoneComercialAssociado();
         this.celularAssociado = dados.celularAssociado();
-        this.dataCadastroAssociado = dados.dataCadastroAssociado();
-    }
+        this.dataCadastroAssociado = dados.dataCadastroAssociado();    }
 }

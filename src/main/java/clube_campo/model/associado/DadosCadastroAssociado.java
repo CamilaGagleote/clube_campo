@@ -1,6 +1,9 @@
 package clube_campo.model.associado;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import clube_campo.model.dependente.DadosCadastroDependente;
 
 public record DadosCadastroAssociado(
     String rgAssociado,
@@ -13,5 +16,6 @@ public record DadosCadastroAssociado(
     String telefoneResidencialAssociado,
     String telefoneComercialAssociado,
     String celularAssociado,
-    LocalDate dataCadastroAssociado
+    LocalDate dataCadastroAssociado,
+     List<DadosCadastroDependente> dependentes
 ) {}
