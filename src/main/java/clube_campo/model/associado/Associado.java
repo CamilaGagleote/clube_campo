@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -39,7 +40,8 @@ public class Associado{
     private String telefoneComercialAssociado;
     private String celularAssociado;
     private LocalDate dataCadastroAssociado;
-    List<Dependente> filhos;
+    @OneToMany(mappedBy = "associado")
+    private List<Dependente> dependentes;
 
     public void atualizarAssociado(DadosAtualizacaoAssociado dados) {
         if (dados.nomeAssociado() != null) this.nomeAssociado = dados.nomeAssociado();

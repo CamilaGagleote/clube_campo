@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,6 +27,7 @@ public class Reserva{
     private LocalDate dataSolicitacao;
     private LocalDate dataReservada;
     private String nomeAreaReservada;
+    @ManyToOne
     private Associado associado;
     private double valorReserva;    
     

@@ -10,15 +10,15 @@ public class AreaClubeService {
     @Autowired
     private AreaClubeRepository repository;
 
-    public AreaClube cadastrar(AreaClube membro) {
-        return repository.save(membro);
+    public AreaClube cadastrar(AreaClube area) {
+        return repository.save(area);
     }
 
-    public List<AreaClube> getAllMembros() {
+    public List<AreaClube> getAllAreas() {
         return repository.findAll();
     }
 
-    public AreaClube getMembroById(Long id) {
+    public AreaClube getAreaById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
