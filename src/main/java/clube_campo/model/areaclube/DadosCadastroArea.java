@@ -5,7 +5,7 @@ public record DadosCadastroArea(
      int qtdeItensArea, 
     String monitorArea,
     String classificacaoArea,
-    boolean indicadorReservavelArea){
+    Boolean indicadorReservavelArea){
 
     
 }

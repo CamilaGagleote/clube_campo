@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Table(name = "areaClube") 
 @Entity(name = "AreaClube")
 @Getter
 @Setter
@@ -29,7 +30,7 @@ public class AreaClube {
     private int qtdeItensArea;
     private String monitorArea;
     private String classificacaoArea;
-    private boolean indicadorReservavelArea;
+    private Boolean indicadorReservavelArea;
 
     public AreaClube(DadosCadastroArea dados) {
         this.nomeArea = dados.nomeArea();
