@@ -19,5 +19,6 @@ public record DadosCadastroAssociado(
     String celularAssociado,
     LocalDate dataCadastroAssociado,
     String tipoAssociado,
-    Long idTurma
+    Long idTurma,
+     List<DadosCadastroDependente> dependentes
 ) {}

@@ -34,4 +34,5 @@ public class PagamentoService {
     public void deletarPagamento(Long id) {
         repository.deleteById(id);
     }
+
 }

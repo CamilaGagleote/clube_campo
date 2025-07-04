@@ -23,8 +23,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 
 @Entity(name = "Associado")
 @Getter
@@ -75,7 +76,8 @@ public class Associado{
         if (dados.telefoneComercialAssociado() != null) this.telefoneComercialAssociado = dados.telefoneComercialAssociado();
         if (dados.celularAssociado() != null) this.celularAssociado = dados.celularAssociado();
         if (dados.dataCadastroAssociado() != null) this.dataCadastroAssociado = dados.dataCadastroAssociado();
-        if (dados.tipoAssociado() != null) this.tipoAssociado = dados.tipoAssociado();
+        if(dados.tipoAssociado() != null) this.tipoAssociado = dados.tipoAssociado();
+        
     }
 
     public Associado(DadosCadastroAssociado dados) {
@@ -91,5 +93,5 @@ public class Associado{
         this.telefoneComercialAssociado = dados.telefoneComercialAssociado();
         this.celularAssociado = dados.celularAssociado();
         this.dataCadastroAssociado = dados.dataCadastroAssociado();
-        this.tipoAssociado = dados.tipoAssociado();    }
+        this.tipoAssociado = dados.tipoAssociado(); }
 }

@@ -30,7 +30,7 @@ public class DependenteController {
             Associado associado = associadoRepository.findById(dados.idAssociado()).orElse(null);
             dependente.setAssociado(associado);
         }
-        return service.cadastrar(dados);
+        return service.cadastrar(dependente);
     }
 
     @GetMapping

@@ -16,12 +16,7 @@ public class DependenteService {
     @Autowired
     private AssociadoRepository associadoRepository;
 
-    public Dependente cadastrar(DadosCadastroDependente dados) {
-        Dependente dependente = new Dependente(dados);
-        if (dados.idAssociado() != null) {
-            Associado associado = associadoRepository.findById(dados.idAssociado()).orElse(null);
-            dependente.setAssociado(associado);
-        }
+    public Dependente cadastrar(Dependente dependente) {
         return dependenteRepository.save(dependente);
     }
 
