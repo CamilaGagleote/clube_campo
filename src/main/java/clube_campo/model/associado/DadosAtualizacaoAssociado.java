@@ -14,5 +14,6 @@ public record DadosAtualizacaoAssociado(
     String telefoneResidencialAssociado,
     String telefoneComercialAssociado,
     String celularAssociado,
-    LocalDate dataCadastroAssociado
+    LocalDate dataCadastroAssociado,
+    String tipoAssociado
 ) {}

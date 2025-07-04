@@ -17,5 +17,6 @@ public record DadosCadastroAssociado(
     String telefoneComercialAssociado,
     String celularAssociado,
     LocalDate dataCadastroAssociado,
+    String tipoAssociado,
      List<DadosCadastroDependente> dependentes
 ) {}

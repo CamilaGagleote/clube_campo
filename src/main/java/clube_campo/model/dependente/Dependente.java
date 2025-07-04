@@ -21,10 +21,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idDependente")
 public class Dependente {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDependente;
-    String rgDependente;
-    String nomeDependente;
+    private String rgDependente;
+    private String nomeDependente;
 
     @ManyToOne
     @JsonBackReference
