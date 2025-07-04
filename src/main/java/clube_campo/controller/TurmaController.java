@@ -25,8 +25,7 @@ public class TurmaController {
     @PostMapping
     @Transactional
     public Turma cadastrarTurma(@RequestBody @Valid DadosCadastroTurma dados) {
-        Turma turma = new Turma(dados);
-        turma.setAssociadoTurma(associadoService.getAssociadoById(dados.idAssociado()));
+        Turma turma = new Turma();
         turma.setPasseioClubeTurma(passeioClubeService.getPasseioById(dados.idPasseioClube()));
         return turmaService.cadastrar(turma);
     }
@@ -39,12 +38,6 @@ public class TurmaController {
     @GetMapping("/{id}")
     public Turma buscarPorId(@PathVariable Long id) {
         return turmaService.getTurmaById(id);
-    }
-
-    @PutMapping
-    @Transactional
-    public Turma atualizarTurma(@RequestBody @Valid DadosAtualizacaoTurma dados) {
-        return turmaService.atualizarTurma(dados);
     }
 
     @DeleteMapping("/{id}")

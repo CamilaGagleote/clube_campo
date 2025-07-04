@@ -20,16 +20,7 @@ public class TurmaService {
 
     public Turma getTurmaById(Long id) {
         return repository.findById(id).orElse(null);
-    }
-
-    public Turma atualizarTurma(DadosAtualizacaoTurma dados) {
-        Turma turma = repository.findById(dados.idTurma()).orElse(null);
-        if (turma != null) {
-            turma.atualizarTurma(dados);
-            return repository.save(turma);
-        }
-        return null;
-    }
+    }  
 
     public void deletarTurma(Long id) {
         repository.deleteById(id);

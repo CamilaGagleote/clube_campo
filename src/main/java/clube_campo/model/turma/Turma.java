@@ -1,7 +1,12 @@
 package clube_campo.model.turma;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import clube_campo.model.associado.Associado;
 import clube_campo.model.cobranca.Cobranca;
+import clube_campo.model.pagamento.Pagamento;
 import clube_campo.model.passeioclube.PasseioClube;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,27 +30,13 @@ import lombok.Setter;
 public class Turma{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTurma;
-    private int qtdeTurma;
-    private int qtdePessoa;
-    private int duracao;
 
     @ManyToOne
     @JoinColumn(name = "passeio_id")
     private PasseioClube passeioClubeTurma;
 
-    @ManyToOne
-    @JoinColumn(name = "associado_id")
-    private Associado associadoTurma;
+    @OneToMany(mappedBy = "turmaAssociado")
+    @JsonIgnore
+    private List<Associado> associadosTurma;
 
-    public Turma(DadosCadastroTurma dados) {
-        this.qtdeTurma = dados.qtdeTurma();
-        this.qtdePessoa = dados.qtdePessoa();
-        this.duracao = dados.duracao();
-    }
-
-    public void atualizarTurma(DadosAtualizacaoTurma dados) {
-        if (dados.qtdeTurma() != null) this.qtdeTurma = dados.qtdeTurma();
-        if (dados.qtdePessoa() != null) this.qtdePessoa = dados.qtdePessoa();
-        if (dados.duracao() != null) this.duracao = dados.duracao();
-    }
 }

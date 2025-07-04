@@ -28,7 +28,7 @@ public class Dependente {
     private String nomeDependente;
 
     @ManyToOne
-    @JsonBackReference
+    
     private Associado associado;
 
     public Dependente(DadosCadastroDependente dados) {
