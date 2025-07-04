@@ -31,7 +31,6 @@ public class Reserva{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReserva;
     private LocalDate dataSolicitacao;
-    private LocalDate dataReservada;
     private String nomeAreaReservada;
 
     @ManyToOne
@@ -49,15 +48,13 @@ public class Reserva{
     private double valorReserva;    
     
     public Reserva(DadosCadastroReserva dados) {
-        this.dataSolicitacao = dados.dataSolicitacao();
-        this.dataReservada = dados.dataReservada();
+        this.dataSolicitacao = LocalDate.now();
         this.nomeAreaReservada = dados.nomeAreaReservada();
         this.valorReserva = dados.valorReserva();
     }
 
     public void atualizarReserva(DadosAtualizacaoReserva dados) {
         if (dados.dataSolicitacao() != null) this.dataSolicitacao = dados.dataSolicitacao();
-        if (dados.dataReservada() != null) this.dataReservada = dados.dataReservada();
         if (dados.nomeAreaReservada() != null) this.nomeAreaReservada = dados.nomeAreaReservada();
         if (dados.associado() != null) this.associadoReserva = dados.associado();
         if (dados.valorReserva() != null) this.valorReserva = dados.valorReserva();

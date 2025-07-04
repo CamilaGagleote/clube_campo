@@ -41,6 +41,6 @@ public class Pagamento{
     public void atualizarPagamento(DadosAtualizacaoPagamento dados) {
         if (dados.valorPagamento() != null) this.valorPagamento = dados.valorPagamento();
         if (dados.formaPagamento() != null) this.formaPagamento = dados.formaPagamento();
-        if (dados.dataPagamento() != null) this.dataPagamento = dados.dataPagamento();
+        this.dataPagamento = LocalDate.now();
     }
 }

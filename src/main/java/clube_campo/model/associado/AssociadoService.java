@@ -19,7 +19,6 @@ public class AssociadoService {
         Associado associado = new Associado(dados);
         Associado associadoSalvo = repository.save(associado);
 
-        // Salva os dependentes, se houver
         if (dados.dependentes() != null && !dados.dependentes().isEmpty()) {
             dados.dependentes().forEach(depDto -> {
                 Dependente dependente = new Dependente(depDto);
@@ -27,14 +26,12 @@ public class AssociadoService {
                 dependenteRepository.save(dependente);
             });
         }
-        // Atualiza a lista de dependentes do associado salvo
         associadoSalvo.setDependentes(dependenteRepository.findByAssociado(associadoSalvo));
         return associadoSalvo;
     }
 
     public List<Associado> getAllAssociados() {
         List<Associado> associados = repository.findAll();
-        // Garante que cada associado venha com a lista de dependentes preenchida
         associados.forEach(a -> a.setDependentes(dependenteRepository.findByAssociado(a)));
         return associados;
     }
@@ -51,7 +48,6 @@ public class AssociadoService {
         Associado associado = repository.findById(dados.idAssociado()).orElse(null);
         if (associado != null) {
             associado.atualizarAssociado(dados);
-            // Não mexe nos dependentes aqui, apenas atualiza os dados do associado
             return repository.save(associado);
         }
         return null;
