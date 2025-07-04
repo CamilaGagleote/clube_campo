@@ -26,6 +26,7 @@ public class TurmaController {
     @Transactional
     public Turma cadastrarTurma(@RequestBody @Valid DadosCadastroTurma dados) {
         Turma turma = new Turma();
+        turma.setCapacidadeTurma(dados.capacidadeTurma());
         turma.setPasseioClubeTurma(passeioClubeService.getPasseioById(dados.idPasseioClube()));
         return turmaService.cadastrar(turma);
     }

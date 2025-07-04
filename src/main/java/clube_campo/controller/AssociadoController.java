@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
+import clube_campo.model.turma.Turma;
 import clube_campo.model.turma.TurmaService;
 
 @RestController
@@ -29,7 +30,11 @@ public class AssociadoController {
     @Transactional
     public Associado cadastrar(@RequestBody @Valid DadosCadastroAssociado dados) {
         Associado associado = new Associado(dados);
+        Turma turma = serviceTurma.getTurmaById(dados.idTurma());
         if(dados.idTurma() != null) {
+            if(turma.getAssociadosTurma().size() >= turma.getCapacidadeTurma()) {
+                throw new RuntimeException("Turma cheia, não é possível associar.");
+            }
             associado.setTurmaAssociado(serviceTurma.getTurmaById(dados.idTurma()));
         }
 

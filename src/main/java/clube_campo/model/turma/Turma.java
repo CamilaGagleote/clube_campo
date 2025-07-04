@@ -30,6 +30,7 @@ import lombok.Setter;
 public class Turma{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTurma;
+    private Long capacidadeTurma;
 
     @ManyToOne
     @JoinColumn(name = "passeio_id")
