@@ -7,6 +7,8 @@ public record DadosCadastroReserva(
     LocalDate dataSolicitacao,
     LocalDate dataReservada,
     String nomeAreaReservada,
-    Associado associado,
+    Long idAssociado,
+    Long idAreaClube,
+    Long idCobranca,
     Double valorReserva
 ) {}

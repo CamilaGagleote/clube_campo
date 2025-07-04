@@ -2,6 +2,8 @@ package clube_campo.model.passeioclube;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import clube_campo.model.pagamento.Pagamento;
 import clube_campo.model.turma.Turma;
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class PasseioClube{
     private int duracao;
 
     @OneToMany(mappedBy = "passeioClubeTurma")
+    @JsonIgnore
     private List<Turma> turmasPasseio;
 
     public PasseioClube(DadosCadastroPasseioClube dados) {

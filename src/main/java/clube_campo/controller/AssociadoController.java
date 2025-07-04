@@ -20,7 +20,12 @@ public class AssociadoController {
     @PostMapping
     @Transactional
     public Associado cadastrar(@RequestBody @Valid DadosCadastroAssociado dados) {
-        return service.cadastrar(dados);
+        Associado associado = new Associado(dados);
+        if(dados.idTurma() != null) {
+            associado.setAssociadoTurma(service.getAssociadoById(dados.idTurma()));
+        }
+
+        return service.cadastrar(associado);
     }
 
     @GetMapping

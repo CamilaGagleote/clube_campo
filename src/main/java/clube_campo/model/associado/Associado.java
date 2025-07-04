@@ -10,11 +10,14 @@ import clube_campo.model.dependente.DadosCadastroDependente;
 import clube_campo.model.dependente.Dependente;
 import clube_campo.model.reserva.Reserva;
 import clube_campo.model.turma.Turma;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -40,18 +43,23 @@ public class Associado{
     private String cepEnderecoAssociado;
     private String bairroEnderecoAssociado;
     private String cidadeEnderecoAssociado;
+    private String estadoEnderecoAssociado;
     private String telefoneResidencialAssociado;
     private String telefoneComercialAssociado;
     private String celularAssociado;
     private LocalDate dataCadastroAssociado;
+    private String tipoAssociado;
+    private Boolean carteirinhaBloqueada = false;
     @OneToMany(mappedBy = "associado")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Dependente> dependentes;
 
-    @OneToMany(mappedBy = "associadoTurma")
-    private List<Turma> turmasAssociado;
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private Turma turmaAssociado;
 
     @OneToMany(mappedBy = "associadoReserva")
+    @JsonIgnore
     private List<Reserva> reservasReserva;
 
     public void atualizarAssociado(DadosAtualizacaoAssociado dados) {
@@ -62,10 +70,12 @@ public class Associado{
         if (dados.cepEnderecoAssociado() != null) this.cepEnderecoAssociado = dados.cepEnderecoAssociado();
         if (dados.bairroEnderecoAssociado() != null) this.bairroEnderecoAssociado = dados.bairroEnderecoAssociado();
         if (dados.cidadeEnderecoAssociado() != null) this.cidadeEnderecoAssociado = dados.cidadeEnderecoAssociado();
+        if (dados.estadoEnderecoAssociado() != null) this.estadoEnderecoAssociado = dados.estadoEnderecoAssociado();
         if (dados.telefoneResidencialAssociado() != null) this.telefoneResidencialAssociado = dados.telefoneResidencialAssociado();
         if (dados.telefoneComercialAssociado() != null) this.telefoneComercialAssociado = dados.telefoneComercialAssociado();
         if (dados.celularAssociado() != null) this.celularAssociado = dados.celularAssociado();
         if (dados.dataCadastroAssociado() != null) this.dataCadastroAssociado = dados.dataCadastroAssociado();
+        if (dados.tipoAssociado() != null) this.tipoAssociado = dados.tipoAssociado();
     }
 
     public Associado(DadosCadastroAssociado dados) {
@@ -76,8 +86,10 @@ public class Associado{
         this.cepEnderecoAssociado = dados.cepEnderecoAssociado();
         this.bairroEnderecoAssociado = dados.bairroEnderecoAssociado();
         this.cidadeEnderecoAssociado = dados.cidadeEnderecoAssociado();
+        this.estadoEnderecoAssociado = dados.estadoEnderecoAssociado();
         this.telefoneResidencialAssociado = dados.telefoneResidencialAssociado();
         this.telefoneComercialAssociado = dados.telefoneComercialAssociado();
         this.celularAssociado = dados.celularAssociado();
-        this.dataCadastroAssociado = dados.dataCadastroAssociado();    }
+        this.dataCadastroAssociado = dados.dataCadastroAssociado();
+        this.tipoAssociado = dados.tipoAssociado();    }
 }

@@ -3,8 +3,12 @@ package clube_campo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
+
 import jakarta.validation.Valid;
+
 import java.util.List;
+
+import clube_campo.model.areaclube.AreaClube;
 import clube_campo.model.reserva.*;
 import clube_campo.model.associado.AssociadoService;
 import clube_campo.model.areaclube.AreaClubeService;
@@ -28,15 +32,16 @@ public class ReservaController {
 
     @PostMapping
     @Transactional
-    public Reserva cadastrarReserva(@RequestBody @Valid DadosCadastroReserva dados,
-                                    @RequestParam Long idAssociado,
-                                    @RequestParam Long idAreaClube,
-                                    @RequestParam(required = false) Long idCobranca) {
+    public Reserva cadastrarReserva(@RequestBody @Valid DadosCadastroReserva dados) {
         Reserva reserva = new Reserva(dados);
-        reserva.setAssociadoReserva(associadoService.getAssociadoById(idAssociado));
-        reserva.setAreaClubeReserva(areaClubeService.getAreaById(idAreaClube));
-        if (idCobranca != null) {
-            reserva.setCobrancaReserva(cobrancaService.getCobrancaById(idCobranca));
+        reserva.setAssociadoReserva(associadoService.getAssociadoById(dados.idAssociado()));
+        AreaClube area = areaClubeService.getAreaById(dados.idAreaClube());
+        reserva.setAreaClubeReserva(area);
+        if (area.getIndicadorReservavelArea() == null || !area.getIndicadorReservavelArea()) {
+            throw new RuntimeException("Área não reservável.");
+        }       
+        if (dados.idCobranca() != null) {
+            reserva.setCobrancaReserva(cobrancaService.getCobrancaById(dados.idCobranca()));
         }
         return reservaService.cadastrar(reserva);
     }

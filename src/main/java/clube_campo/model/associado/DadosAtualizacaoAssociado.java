@@ -11,8 +11,10 @@ public record DadosAtualizacaoAssociado(
     String cepEnderecoAssociado,
     String bairroEnderecoAssociado,
     String cidadeEnderecoAssociado,
+    String estadoEnderecoAssociado,
     String telefoneResidencialAssociado,
     String telefoneComercialAssociado,
     String celularAssociado,
-    LocalDate dataCadastroAssociado
+    LocalDate dataCadastroAssociado,
+    String tipoAssociado
 ) {}

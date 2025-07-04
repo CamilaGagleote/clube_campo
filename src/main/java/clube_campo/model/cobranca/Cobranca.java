@@ -2,6 +2,8 @@ package clube_campo.model.cobranca;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import clube_campo.model.pagamento.Pagamento;
 import clube_campo.model.reserva.Reserva;
 import jakarta.persistence.Entity;
@@ -32,9 +34,11 @@ public class Cobranca {
     private String cnpj;
 
     @OneToMany(mappedBy = "cobrancaPagamento")
+    @JsonIgnore
     private List<Pagamento> pagamentosCobranca;
-
+    
     @OneToMany(mappedBy = "cobrancaReserva")
+    @JsonIgnore
     private List<Reserva> reservasCobranca;
 
     public Cobranca(DadosCadastroCobranca dados) {

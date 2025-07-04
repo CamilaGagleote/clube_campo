@@ -13,9 +13,11 @@ public record DadosCadastroAssociado(
     String cepEnderecoAssociado,
     String bairroEnderecoAssociado,
     String cidadeEnderecoAssociado,
+    String estadoEnderecoAssociado,
     String telefoneResidencialAssociado,
     String telefoneComercialAssociado,
     String celularAssociado,
     LocalDate dataCadastroAssociado,
-     List<DadosCadastroDependente> dependentes
+    String tipoAssociado,
+    Long idTurma
 ) {}

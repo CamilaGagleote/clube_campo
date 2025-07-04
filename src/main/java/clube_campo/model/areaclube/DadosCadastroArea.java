@@ -2,10 +2,10 @@ package clube_campo.model.areaclube;
 
 public record DadosCadastroArea(
     String nomeArea,
-     int qtdeItensArea, 
+    int qtdeItensArea,
     String monitorArea,
     String classificacaoArea,
-    Boolean indicadorReservavelArea){
-
+    Boolean indicadorReservavelArea
+) {
     
 }

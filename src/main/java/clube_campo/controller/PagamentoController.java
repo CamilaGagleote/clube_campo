@@ -28,12 +28,11 @@ public class PagamentoController {
     @PostMapping
     @Transactional
     public Pagamento cadastrarPagamento(
-        @RequestBody @Valid DadosCadastroPagamento dados,
-        @RequestParam Long idCobranca
+        @RequestBody @Valid DadosCadastroPagamento dados
     ) {
         Pagamento pagamento = new Pagamento(dados);
         
-        Cobranca cobranca = serviceCobranca.getCobrancaById(idCobranca);
+        Cobranca cobranca = serviceCobranca.getCobrancaById(dados.idCobranca());
         pagamento.setCobrancaPagamento(cobranca);
 
         return service.cadastrar(pagamento);
