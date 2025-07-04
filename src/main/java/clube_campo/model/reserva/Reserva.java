@@ -52,7 +52,6 @@ public class Reserva{
         this.dataSolicitacao = dados.dataSolicitacao();
         this.dataReservada = dados.dataReservada();
         this.nomeAreaReservada = dados.nomeAreaReservada();
-        this.associadoReserva = dados.associado();
         this.valorReserva = dados.valorReserva();
     }
 

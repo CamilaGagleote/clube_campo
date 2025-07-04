@@ -24,12 +24,10 @@ public class TurmaController {
 
     @PostMapping
     @Transactional
-    public Turma cadastrarTurma(@RequestBody @Valid DadosCadastroTurma dados,
-                                @RequestParam Long idAssociado,
-                                @RequestParam Long idPasseioClube) {
+    public Turma cadastrarTurma(@RequestBody @Valid DadosCadastroTurma dados) {
         Turma turma = new Turma(dados);
-        turma.setAssociadoTurma(associadoService.getAssociadoById(idAssociado));
-        turma.setPasseioClubeTurma(passeioClubeService.getPasseioById(idPasseioClube));
+        turma.setAssociadoTurma(associadoService.getAssociadoById(dados.idAssociado()));
+        turma.setPasseioClubeTurma(passeioClubeService.getPasseioById(dados.idPasseioClube()));
         return turmaService.cadastrar(turma);
     }
 

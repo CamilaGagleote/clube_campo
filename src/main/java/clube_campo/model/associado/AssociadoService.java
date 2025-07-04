@@ -60,4 +60,8 @@ public class AssociadoService {
     public void deletarAssociado(Long id) {
         repository.deleteById(id);
     }
+
+    public Associado salvar(Associado associado) {
+        return repository.save(associado);
+    }
 }
